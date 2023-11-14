@@ -11,6 +11,12 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous"
     />
+    <!-- Add these links in the head of your HTML file -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'main.css') }}">
     
     {% if title %}
@@ -45,6 +51,7 @@
               {% if current_user.is_authenticated %}
                 <a class="nav-item nav-link" href="{{url_for('account')}}">Account</a>
                 <a class="nav-item nav-link" href="{{url_for('logout')}}">Logout</a>
+                <a class="nav-item nav-link" href="{{url_for('new_post')}}">New Post</a>
               {% else %}
                 <a class="nav-item nav-link" href="{{url_for('login')}}">Login</a>
                 <a class="nav-item nav-link" href="{{url_for('register')}}">Register</a>

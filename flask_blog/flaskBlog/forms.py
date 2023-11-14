@@ -1,6 +1,6 @@
 #for creating forms we need many different validation checks, some reg-ex for valid email, check password etc. For this is an extension wtforms which makes all these things easy.We will be writing python classes representing forms, they will be converted to html forms in templates
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField,SubmitField,BooleanField
+from wtforms import StringField, PasswordField,SubmitField,BooleanField, TextAreaField
 from wtforms.validators import DataRequired,Length,Email,EqualTo, ValidationError
 from flaskBlog.models import User
 
@@ -34,3 +34,8 @@ class LoginForm(FlaskForm):
   password = PasswordField("Password",validators=[DataRequired()])
   remember = BooleanField('Remember Me')
   submit = SubmitField('Log In')
+
+class PostForm(FlaskForm):
+  title =  StringField('Title',validators=[DataRequired()])
+  content = TextAreaField('Content',validators=[DataRequired()])
+  submit = SubmitField('Post')

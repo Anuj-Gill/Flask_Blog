@@ -6,11 +6,13 @@
     <article class="media content-section">
       <div class="media-body">
         <div class="article-metadata">
-          <a class="mr-2" href="#">{{ post.author }}</a>
-          <small class="text-muted">{{ post.date }}</small>
+          <p class="mr-2" style="display: inline;
+                                font-weight: 600;
+                                font-size: 20px;">{{ post.author.username }}</p>
+          <small class="text-muted ms-3">{{ post.date_posted.strftime('%d/%m/%Y') }}</small>
         </div>
-        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content }}</p>
+        <h2><a class="article-title" href="{{url_for('post',post_id=post.id)}}">{{ post.title }}</a></h2>
+        <p class="article-content">{{ post.content | truncate(150, True, '...')|safe}}</p>
       </div>
     </article>
     {% endfor %}
