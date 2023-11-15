@@ -5,16 +5,18 @@ from flaskBlog import bcrypt,app,db
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-@app.route("/about")
-def about():
-    return render_template("about.html")
-
-@app.route("/home")
-def home():
-    posts = Post.query.all()
-    return render_template("home.html",posts = posts,title = "Welcome")
 
 @app.route("/")
+@app.route("/about")
+def about():
+    return render_template("about.html",title='About')
+
+@app.route("/home")
+@login_required
+def home():
+    posts = Post.query.all()
+    return render_template("home.html",posts = posts,title = "Home Feed")
+
 @app.route("/register", methods=['GET','POST']) #methods is used to specify that this specific route can accept these methods
 def register():
     if current_user.is_authenticated:
@@ -52,11 +54,6 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@app.route("/account")
-@login_required
-def account():
-    return render_template('account.html',title='Account')
-
 @app.route('/post/new',methods=["GET","POST"])
 @login_required
 def new_post():
@@ -70,6 +67,7 @@ def new_post():
     return render_template('new_post.html',title="New Post", form=form,legend='New Post')
 
 @app.route("/post/<int:post_id>")
+@login_required
 def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html',title=post.title, post=post)
