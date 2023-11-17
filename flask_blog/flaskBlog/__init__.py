@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 load_dotenv("../.env")
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY") #generated using secret module
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db' #/// is for the relative paths, means that site.db will be created in the same file where py file is there
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///birthday.db' #/// is for the relative paths, means that site.db will be created in the same file where py file is there
 app.config["WTF_CSRF_ENABLED"] = False
 db = SQLAlchemy(app) #instance of sqlalchemy
 bcrypt = Bcrypt(app)
